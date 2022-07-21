@@ -1,0 +1,60 @@
+
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+ 
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Tüm Liste</h2>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Anasayfa</a></li>
+						<li>Tüm Liste</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	 
+
+	<div class="row">
+		{% for item in detay %} 
+		<!-- Listing Item -->
+		<div class="col-lg-4 col-md-6 isotope-item first-filter">
+			
+			<a href="{% url 'website:add_comment' item.slug %}" class="listing-item-container compact">
+				<div class="listing-item">
+					{% if item.image %}
+					<img src="{{item.image.url}}" class="image" alt="image"> 
+					{% endif %}
+					<!-- Content -->
+					<div class="listing-item-content">
+							<h3>{{item.name}} {{item.surname}} <i class="verified-icon"></i></h3>
+							<span>{{item.city}}</span>
+						 </div>
+					
+	
+						<span class="like-icon"></span>
+					</div>
+				</a>
+			</div>
+		
+		{% endfor %}
+	</div>
+{% endblock %}
+

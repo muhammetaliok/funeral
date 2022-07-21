@@ -1,0 +1,42 @@
+{% extends "back_end/base/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js" charset="utf-8"></script>
+
+<div class="container mt-3" >
+
+<div class="card">
+  <div class="card-body">
+    <div class="card-header">
+       <h2 class="w-100 text-center">{{contact.full_name}}</h2>
+    </div>
+    <div class="row">
+      <table class="table">
+        <tbody>
+
+            <th scope="row">Mail Adresi :</th>
+            <td>{{contact.email}}</td>
+          </tr>
+          <!--<tr>
+            <th scope="row">Telefon Numarası :</th>
+            <td>{{user.user_number}}</td>
+          </tr> -->
+          <tr>
+            <th scope="row">Kullanıcı Mesajı :</th>
+            <td>{{contact.message}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+  </div>
+</div>
+
+
+
+</div>
+
+{% endblock %}

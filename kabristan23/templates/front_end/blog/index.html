@@ -1,0 +1,154 @@
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+ 
+  
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="gradient">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>Blog</h2><span>En Yeni Haberler</span>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs">
+					<ul>
+						<li><a href="#">Anasayfa</a></li>
+						<li>Blog</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+	<!-- Blog Posts -->
+	<div class="blog-page">
+	<div class="row">
+		<div class="col-lg-9 col-md-8 padding-right-30">
+		{% for item in getBlog %} 
+
+			<!-- Blog Post -->
+			<div class="blog-post">
+				
+				<!-- Img -->
+				{% if item.image %}
+				<a href="{% url 'website:blog_details' item.slug %}" class="post-img">				
+					<img src="{{item.image.url}}" class="image" alt="image">				
+				</a>
+				{% endif %}
+				
+				
+				<!-- Content -->
+				<div class="post-content">
+					<h3><a href="{% url 'website:blog_details' item.slug %}">{{item.blog_title}} </a></h3>
+
+					<ul class="post-meta">
+						<li>{{item.blog_date}}</li>
+						<li><a href="#">Tips</a></li> 
+					</ul>
+
+					<p>{{item.blog_description}}</p>
+
+					<a href="{% url 'website:blog_details' item.slug %}" class="read-more">Devamını Oku<i class="fa fa-angle-right"></i></a>
+				</div>
+
+				</div>
+			{% endfor %}
+			<!-- Blog Post / End -->
+
+
+			<!-- Pagination -->
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- Pagination -->
+					<div class="pagination-container margin-bottom-40">
+						<nav class="pagination">
+							<ul>
+								<li><a href="#" class="current-page">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<!-- Pagination / End -->
+
+		</div>
+
+	<!-- Blog Posts / End -->
+
+
+	<!-- Widgets -->
+	<div class="col-lg-3 col-md-4">
+		<div class="sidebar right">
+
+			<!-- Widget -->
+			<div class="widget">
+				<h3 class="margin-top-0 margin-bottom-25">Haberlerde Ara</h3>
+				<div class="search-blog-input">
+					<div class="input"><input class="search-field" type="text" placeholder="Ne arıyorsun?" value=""/></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<!-- Widget / End -->
+
+ 
+
+
+			<!-- Widget -->
+			<div class="widget margin-top-40">
+
+				<h3>Populer Haberler</h3>
+				<ul class="widget-tabs">
+
+					<!-- Post #1 -->
+					<li>
+						{% for item in getBlog %}
+						<div class="widget-content">
+								<div class="widget-thumb">
+								<a href="/blog-details"><img src="{{item.image.url}}" alt=""></a>
+							</div>
+							
+							<div class="widget-text">
+								<h5><a href="/blog-details">{{item.blog_title}} </a></h5>
+								<span>{{item.blog_date}}</span>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						{% endfor %}
+					</li>
+
+
+				</ul>
+
+			</div>
+			<!-- Widget / End-->
+
+
+		 
+			<!-- Widget / End-->
+
+			<div class="clearfix"></div>
+			<div class="margin-bottom-40"></div>
+		</div>
+	</div>
+	</div>
+	<!-- Sidebar / End -->
+
+
+</div>
+</div>
+ 
+{% endblock %}

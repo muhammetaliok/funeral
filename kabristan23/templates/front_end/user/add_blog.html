@@ -1,0 +1,41 @@
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-3" >
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="card mb-5">
+                  <div class="card-body">
+                     <h5 class="card-title w-100 text-center" style="font-size: 25px;"> Blog Ekle
+                        </h5>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+
+                        <div class="filebox  preview-image text-center">                        
+                            <label for="input_file">Yeni Resim Seç</label>
+                            <input type="file" name="image" accept="image/*" id="input_file" class="upload-hidden">
+                    
+                          </div>
+                          <div class="form-group">
+                              <label>İsim</label>
+                              {{form.blog_title}}
+                          </div>
+                          <div class="form-group">
+                            <label>Blog Tarihi</label>
+                            {{form.blog_date}}
+                        </div>
+                        <div class="form-group">
+                            <label>Blog Açıklaması</label>
+                            {{form.blog_description}}
+                        </div>
+
+                  </div>
+        </div>
+        <button type="submit">Gönder</button>
+    </form>  
+ </div>
+
+
+{% endblock %}

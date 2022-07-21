@@ -1,0 +1,117 @@
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+ 
+ 
+
+
+<!-- Content
+================================================== -->
+<div class="container" style="margin-top:20px ;">
+
+	<!-- Blog Posts -->
+	<div class="blog-page">
+	<div class="row">
+
+
+		
+		<!-- Post Content -->
+			<div class="col-12 padding-right-30">
+				{% for item in getBlog %} 
+
+
+				<!-- Blog Post -->
+					<div class="blog-post single-post">
+						
+						<!-- Img -->
+						{% if item.image %}
+						<img class="image" src="{{item.image.url}}" alt="image">
+						{% endif %}
+
+						
+						<!-- Content -->
+						<div class="post-content">
+
+							<h3>{{item.blog_title}}</h3>
+
+							<ul class="post-meta">
+								<li>{{item.blog_date}}</li>
+								<li><a href="#">Tips</a></li>
+							</ul>
+
+							<p>{{item.blog_description}}</p>
+
+		
+							
+
+
+							
+							<div class="clearfix"></div>
+
+						</div>
+					</div>
+				{% endfor %}
+				
+				<!-- Blog Post / End -->
+
+
+				<!-- Post Navigation -->
+				<ul id="posts-nav" class="margin-top-0 margin-bottom-45">
+					<li class="next-post">
+						<a href=""><span>Sonraki Haber</span>
+						{{item.blog_title}}</a>
+					</li>
+					<li class="prev-post">
+						<a href="#"><span>Önceki Haber</span>
+						{{item.blog_title}}</a>
+					</li>
+				</ul>
+	
+
+				<!-- Related Posts -->
+				<div class="clearfix"></div>
+				<h4 class="headline margin-top-25">İlgili Haberler</h4>
+				<div class="row">
+					{% for item in getBlog %}
+
+						<!-- Blog Post Item -->
+						<div class="col-md-4">
+							<a href="#" class="blog-compact-item-container">
+								<div class="blog-compact-item">
+									{% if item.image %}
+									<img src="{{item.image.url}}" class="image" alt="">
+									{% endif %}
+									<span class="blog-item-tag">Tips</span>
+									<div class="blog-compact-item-content">
+										<ul class="blog-post-tags">
+											<li>{{item.blog_date}}</li>
+										</ul>
+										<h3>{{item.blog_title}}</h3>
+									</div>
+								</div>
+							</a>
+						</div>
+					<!-- Blog post Item / End -->
+
+					{% endfor %}
+				</div>
+				<!-- Related Posts / End -->
+
+
+				<div class="margin-top-50"></div>
+
+		
+
+		</div>
+		<!-- Content / End -->
+
+	
+	</div>
+	<!-- Sidebar / End -->
+
+
+</div>
+</div>
+
+ 
+{% endblock %}

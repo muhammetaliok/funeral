@@ -1,0 +1,254 @@
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+ 
+ 
+<!-- Banner
+================================================== -->
+<div class="home-search-carousel carousel-not-ready">
+
+	<!-- Item -->
+	<div class="home-search-slide" style="background-image: url(static/front_end/images/home-carousel-01.jpg)">
+		<div class="home-search-slider-headlines">
+			<div class="container">
+				<div class="col-md-12">
+					<h3>Find <a href="#">things you'll love</a></h3>
+					<h3>Support independent sellers.</h3>
+				</div>	
+			</div>	
+		</div>	
+	</div>
+
+	<!-- Item -->
+	<div class="home-search-slide" style="background-image: url(static/front_end/images/home-carousel-02.jpg)">
+		<div class="home-search-slider-headlines">
+			<div class="container">
+				<div class="col-md-12">
+					<h3>Best <a href="#">Cosy Apartments</a> to Stay</h3>
+				</div>	
+			</div>	
+		</div>	
+	</div>
+
+	<!-- Item -->
+	<div class="home-search-slide" style="background-image: url(static/front_end/images/home-carousel-03.jpg)">
+		<div class="home-search-slider-headlines">
+			<div class="container">
+				<div class="col-md-12">
+					<h3>Scenic places to camp </h3>
+					<h3>Inspire <a href="#">your next nature trip</a></h3>
+				</div>	
+			</div>	
+		</div>	
+	</div>
+
+	<!-- Search -->
+	<div class="container search-cont">
+		<div class="col-md-12">
+
+					<div class="main-search-input">
+
+						<div class="main-search-input-item">
+							<input type="text" placeholder="Ne arıyorsun ?" value=""/>
+						</div>
+
+						 
+
+						<div class="main-search-input-item">
+							<select data-placeholder="All Categories" class="chosen-select" >
+								<option>Tüm şehirler</option>	
+								<option>Mardin</option>
+								<option>İstanbul</option>
+								<option>Ankara</option>
+								<option>Bursa</option>
+							</select>
+						</div>
+
+						<button class="button" onclick="window.location.href='/search'">Arama Yap</button>
+
+					</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<section class="fullwidth margin-top-0 padding-top-0 padding-bottom-70 background-gradient">
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-12">
+			<h3 class="headline centered margin-top-0">
+				<strong class="headline-with-separator">En Çok Ziyaret Edilenler</strong>
+			</h3>
+		</div>
+
+		<div class="col-md-12">
+			<div class="categorxies-boxes-container-alt margin-top-5 margin-bottom-30">
+				
+				<!-- Box -->
+				<a href="listings-list-with-sidebar.html" class="category-small-box-alt">
+					<i class="im im-icon-Hamburger"></i>
+					<h4>İstanbul</h4>
+					<span class="category-box-counter-alt">12</span>
+					<img src="{% static 'front_end/images/category-box-01.jpg' %}">
+				</a>
+
+				<!-- Box -->
+				<a href="listings-list-with-sidebar.html" class="category-small-box-alt">
+					<i class="im  im-icon-Sleeping"></i>
+					<h4>Ankara</h4>
+					<span class="category-box-counter-alt">32</span>
+					<img src="{% static 'front_end/images/category-box-01.jpg' %}">
+				</a>
+
+				<!-- Box -->
+				<a href="listings-list-with-sidebar.html" class="category-small-box-alt">
+					<i class="im im-icon-Shopping-Bag"></i>
+					<h4>İzmir</h4>
+					<span class="category-box-counter-alt">11</span>
+					<img src="{% static 'front_end/images/category-box-01.jpg' %}">
+				</a>
+
+				<!-- Box -->
+				<a href="listings-list-with-sidebar.html" class="category-small-box-alt">
+					<i class="im im-icon-Cocktail"></i>
+					<h4>Bursa</h4>
+					<span class="category-box-counter-alt">15</span>
+					<img src="{% static 'front_end/images/category-box-01.jpg' %}">
+				</a>
+
+				<!-- Box -->
+				<a href="listings-list-with-sidebar.html" class="category-small-box-alt">
+					<i class="im im-icon-Electric-Guitar"></i>
+					<h4>Mardin</h4>
+					<span class="category-box-counter-alt">21</span>
+					<img src="{% static 'front_end/images/category-box-01.jpg' %}">
+				</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+<!-- Category Boxes / End -->
+
+</div>
+
+
+<!-- Listings -->
+<div class="container margin-top-70">
+	<div class="row">
+
+		<div class="col-md-12">
+			<h3 class="headline centered margin-bottom-45">
+				<strong class="headline-with-separator">Populer Mezarlar</strong>
+			 
+			</h3>
+		</div>
+
+		<div class="col-md-12">
+			<div class="simple-slick-carousel dots-nav">
+
+			<!-- Listing Item -->
+			{% for item in detay %}
+			<div class="carousel-item">
+				<a href="/list-details" class="listing-item-container">
+					<div class="listing-item">
+						<img src="{% static 'front_end/images/listing-item-01.jpg' %}" alt="">
+
+ 						
+						<div class="listing-item-content">
+ 							<h3>{{item.name}} {{item.surname}}</h3>
+							 <span>{{item.city}}</span>
+						</div>
+						<span class="like-icon"></span>
+					</div>
+				 
+				</a>
+			</div>
+			{% endfor %}
+		
+
+ 
+		 
+			</div>
+			
+		</div>
+
+	</div>
+</div>
+<!-- Listings / End -->
+
+ 
+
+<div class="container margin-top-80">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="headline margin-top-0 margin-bottom-40">
+				<strong class="headline-with-separator">Nasıl Çalışıyoruz?</strong>
+			</h3>
+		</div>
+		<div class="col-md-5">
+			<a href="/user-info" class="icon-box-v3">
+				<div class="ibv3-icon">
+					<i class="im im-icon-Add-User"></i>
+				</div>
+				<div class="ibv3-content">
+					<h4>Hesap Oluştur</h4>
+					<p>Integer dapibus purus sit amet metus scelerisque hendrerit non a urna</p>				
+				</div>
+
+			</a>
+			<a href="/user-add-post" class="icon-box-v3">
+				<div class="ibv3-icon">
+					<i class="im im-icon-Add-File"></i>
+				</div>
+				<div class="ibv3-content">
+					<h4>İlan Ekle</h4>
+					<p>Phasellus id nulla id tortor laoreet tempor et non risus class aptent taciti</p>			
+				</div>
+					
+			</a>
+			<a href="#" class="icon-box-v3">
+				<div class="ibv3-icon">
+					<i class="im im-icon-Queen"></i>
+				</div>
+				<div class="ibv3-content">
+					<h4>Get Exposure</h4>
+					<p>Vestibulum pretium massa in bibendum nam mollis quam et feugiat consectetur</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-md-7">
+			<div class="svg-alignment">
+				<img src="{% static 'front_end/images/image_placeholder.svg' %}" style="width: 60%;" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section class="fullwidth border-top padding-bottom-80 padding-top-80 margin-top-80">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="boxed-photo-banner">
+					<!-- Infobox -->
+					<div class="boxed-photo-banner-text">
+						<h2>Topluluğumuza Katılın</h2>
+						<p>Earn extra income and unlock new opportunities by advertising your business</p>
+						<a href="/user-add-post" class="button margin-top-25">Bizimle Paylaşın</a>
+					</div>
+					<!-- Infobox / End -->
+					<img src="{% static 'front_end/images/slider-bg-02.jpg' %}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}

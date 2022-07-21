@@ -1,0 +1,30 @@
+{% extends "back_end/base/main.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-3" >
+<div class="card mb-5">
+  <div class="card-body">
+     <h5 class="card-title w-100 text-center" style="font-size: 25px;">Blog Kategorisi Düzenle</h5>
+
+        <form method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="row">
+               <div class="form-group col-md-6 m-auto" style="border:1px solid #ddd; padding:15px 15px;">
+
+
+                   <div class="inputgroup mt-4">
+                    <label for="">Kategori Başlığı</label>
+                        <input type="text" name="category" value="{{category.name}}" class="form-control" required>
+                   </div>
+
+                    <div class="inputgroup mt-4 text-center">
+                      <button type="submit" id="submit" name="submit" class="btn btn-success " style=" border-radius: 500px;   padding: 10px 34px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Kaydet</button>
+                   </div>
+               </div>
+              </div>
+         </form>
+
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-3" >
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="card mb-5">
+                  <div class="card-body">
+                     <h5 class="card-title w-100 text-center" style="font-size: 25px;"> Kişi Ekle
+                        </h5>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label>Resim</label>
+                            {{form.image}}
+                        </div>
+
+                          <div class="form-group">
+                              <label>İsim</label>
+                              {{form.name}}
+                          </div>
+                          <div class="form-group">
+                            <label>Soy İsim</label>
+                            {{form.surname}}
+                        </div>
+                        <div class="form-group">
+                            <label>Doğum Tarihi</label>
+                            {{form.birth_date}}
+                        </div>
+                        <div class="form-group">
+                            <label>Ölüm Tarihi</label>
+                            {{form.death_date}}
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon Numarası</label>
+                            {{form.phone_number}}
+                        </div>
+                        <div class="form-group">
+                            <label>Şehir</label>
+                            {{form.city}}
+                        </div>
+                        <div class="form-group">
+                            <label>Adres</label>
+                            {{form.adres}}
+                        </div>
+                        <div class="form-group">
+                            <label>Açıklama</label>
+                            {{form.desc}}
+                        </div>
+                        <div class="form-group">
+                            <label>Facebook</label>
+                            {{form.facebook}}
+                        </div>
+                        <div class="form-group">
+                            <label>Twitter</label>
+                            {{form.twitter}}
+                        </div>
+                        <div class="form-group">
+                            <label>İnstagram</label>
+                            {{form.instagram}}
+                        </div>
+                  </div>
+        </div>
+        <button type="submit">Gönder</button>
+    </form>  
+ </div>
+{% endblock %}

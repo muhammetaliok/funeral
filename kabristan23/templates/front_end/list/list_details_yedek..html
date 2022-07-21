@@ -1,0 +1,251 @@
+{% extends "front_end/base/main.html" %}
+{% load static %}
+{% block content %}
+ 
+  <!-- Gradient-->
+<div class="single-listing-page-titlebar"></div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row sticky-wrapper">
+		<div class="col-lg-8 col-md-8 padding-right-30">
+			{% for item in detay %}
+
+				<!-- Titlebar -->
+				<div id="titlebar" class="listing-titlebar">
+					<div class="listing-titlebar-title">
+						<h2>{{item.name}} {{item.surname}}</h2>
+						<span>
+							<a href="#listing-location" class="listing-address">
+								<i class="fa fa-map-marker"></i>
+								{{item.city}}
+							</a>
+						</span>
+					
+					</div>
+				</div>
+
+				<!-- Listing Nav -->
+			
+				<!-- Overview -->
+				<div id="listing-overview" class="listing-section">
+
+				
+
+					<!-- Description -->
+					<p>
+						{{item.desc}}
+					</p>
+
+					
+					
+					<!-- Listing Contacts -->
+					<div class="listing-links-container">
+
+						<ul class="listing-links contact-links">
+							<li><a href="#" class="listing-links"><i class="fa fa-phone"></i> {{item.phone_number}}</a></li>
+							<li><a href="#" class="listing-links"><i class="fa fa-envelope-o"></i> mail@example.com</a>
+							</li>
+							<li><a href="#" target="_blank" class="listing-links"><i class="fa fa-link"></i> www.example.com</a></li>
+						</ul>
+						<div class="clearfix"></div>
+	
+
+					</div>
+					<div class="clearfix"></div>
+
+
+				
+				</div>
+			{% endfor %}
+
+			<!-- Slider -->
+			<div id="listing-gallery" class="listing-section">
+				<h3 class="listing-desc-headline margin-top-70">Resimler</h3>
+				<div class="listing-slider-small mfp-gallery-container margin-bottom-0">
+					<a href="/static/front_end/images/single-listing-02a.jpg" data-background-image="/static/front_end/images/single-listing-02a.jpg" class="item mfp-gallery" title="Title 2"></a>
+					<a href="/static/front_end/images/single-listing-01a.jpg" data-background-image="/static/front_end/images/single-listing-01a.jpg" class="item mfp-gallery" title="Title 1"></a>
+					<a href="/static/front_end/images/single-listing-03a.jpg" data-background-image="/static/front_end/images/single-listing-03a.jpg" class="item mfp-gallery" title="Title 3"></a>
+					<a href="/static/front_end/images/single-listing-04a.jpg" data-background-image="/static/front_end/images/single-listing-04a.jpg" class="item mfp-gallery" title="Title 3"></a>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+
+
+        
+		<!-- Sidebar
+		================================================== -->
+		<div class="col-lg-4 col-md-4 margin-top-75 sticky">
+		
+
+		 
+            <div class="verified-badge with-tip" data-tip-content="Vefat Tarihi" style="background-color:#cd0404 ;">
+				<i class="sl sl-icon-info"></i> 
+                <span>12.03.1765 - <small class="text-white"> Cumartesi </small></span>
+             
+			 </div>
+
+            
+			<!-- Contact -->
+			
+				<div class="boxed-widget margin-top-35">
+					{% for item in userList %}
+						<div class="hosted-by-title">
+							<h4><span>Adı Soyadı</span> <a href="#">{{item.name}}</a></h4>
+							<a href="/user-info" class="image"><img src="{{item.image.url}}" alt=""></a>
+						</div>
+						<ul class="listing-details-sidebar">
+							<li><i class="sl sl-icon-phone"></i> {{item.phone_number}}</li>
+							<!-- <li><i class="sl sl-icon-globe"></i> <a href="#">http://example.com</a></li> -->
+							<li><i class="fa fa-envelope-o"></i> <a href="#">{{item.email}}</a></li>
+						</ul>
+
+						<ul class="listing-details-sidebar social-profiles">
+							<li><a href="#" class="facebook-profile"><i class="fa fa-facebook"></i> {{item.facebook}}</a></li>
+							<li><a href="#" class="twitter-profile"><i class="fa fa-twitter"></i> {{item.twitter}}</a></li> 
+							<li><a href="#" class="instagram-profile"><i class="fa fa-instagram"></i> {{item.instagram}}</a></li> 
+							<!-- <li><a href="#" class="gplus-profile"><i class="fa fa-google-plus"></i> Google Plus</a></li> -->
+						</ul>
+
+						<!-- Reply to review popup -->
+					
+
+		
+						<div class="text-center w-100 mt-4">159 kişi inceledi</div>
+					{% endfor%}
+				</div>
+			
+			<!-- Contact / End-->
+
+
+            
+			<!-- Add Review Box -->
+			<form method="post" action="" name="User" id="ListComment" autocomplete="on">
+			<div id="add-review" class="add-review-box">
+				
+				
+
+				<!-- Add Review -->
+					<h3 class="listing-desc-headline margin-bottom-50 text-center">Yorum yaz</h3>
+					<!-- <form method="post" action="" name="User" id="ListComment" autocomplete="on"> -->
+	
+				
+					<!-- Review Comment -->
+					
+						<fieldset class="">
+							{% csrf_token %}
+
+							<div class="row">
+								<div class="col-12">
+									<h4>Adı Soyadı</h4>
+									<input name="name" type="text" >
+								</div>
+									
+								<div class="col-12">
+									<h4>Mail Adresi</h4>									
+									<input name="email" type="text">
+								</div>
+								<div>
+									<h4>Yorum</h4>									
+									<textarea name="comment" cols="40" rows="3"></textarea>
+								</div>
+							</div>
+
+							
+
+						</fieldset>
+
+						<button class="button " type="submit">Gönder</button>
+						<div class="clearfix"></div>
+				
+				
+			</div>
+		</form>
+		
+			<!-- Add Review Box / End -->
+ 
+
+		</div>
+
+        
+				
+			<!-- Reviews -->
+			<div id="listing-reviews" class="listing-section">
+				<h3 class="listing-desc-headline margin-top-75 margin-bottom-20">Yorumlar <span>(12)</span></h3>
+
+				<div class="clearfix"></div>
+
+				<!-- Reviews -->
+				<section class="comments listing-reviews">
+					{% for item in  listComment%}
+					<ul>
+						<li>
+							
+							<div class="avatar"><img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt=""></div>
+							<div class="comment-content"><div class="arrow-comment"></div>
+								<div class="comment-by">{{item.name}} <i class="tip" data-tip-content="Person who left this review actually was a customer"></i> <span class="date">June 2019</span>
+								</div>
+								<p>{{item.comment}} </p>
+								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Yararlı <span>12</span></a>
+							</div>
+							
+						</li>
+
+						 
+					 </ul>
+					 {% endfor %}
+				</section>
+
+				<!-- Pagination -->
+				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Pagination -->
+						<div class="pagination-container margin-top-30">
+							<nav class="pagination">
+								<ul>
+									<li><a href="#" class="current-page">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<!-- Pagination / End -->
+			</div>
+
+
+
+		<!-- Sidebar / End -->
+			<!-- Location -->
+			<div id="listing-location" class="listing-section">
+				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
+
+				<div id="singleListingMap-container">
+                    <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.639691667287!2d28.786212615146614!3d41.03313812584406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa35865ce6949%3A0xe02ee600ce0386a1!2sEYTSOFT+%7C+Web+Tasar%C4%B1m%2CSeo+ve+Mobil+Uygulamalar!5e0!3m2!1str!2str!4v1551359935762"><a href="https://www.gps.ie/golf-gps/">golf range finders</a></iframe></div>
+
+				</div>
+			</div>
+
+
+
+            
+	</div>
+
+
+
+
+</div>
+
+
+ 
+{% endblock %}

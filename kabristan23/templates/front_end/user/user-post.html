@@ -1,0 +1,88 @@
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+ 
+ <div class="col-12 m-auto" style=" display: flex; justify-content: center;"> 
+
+
+
+	<div class="col-lg-12 col-md-12">
+		<div class="dashboard-list-box margin-top-0">
+			<h4>Tüm İlanlarım</h4>
+			<ul>
+				<form method="post" action="" name="User" id="UserAddPost" autocomplete="on">
+
+				<li>
+					{% for item in detay %}
+					<div class="list-box-listing">
+						<div class="list-box-listing-img"><a href="/user-add-post"><img src="/static/front_end/images/listing-item-01.jpg" alt=""></a></div>
+						<div class="list-box-listing-content">
+							<div class="inner">
+								<h3><a href="/user-add-post">{{item.name}}</a></h3>
+								<span>{{item.il}}</span> 
+  							</div>
+						</div>
+					
+					
+					<div class="buttons-to-right">
+						<a href="/user-post-edit" class="button gray"><i class="sl sl-icon-note"></i> DÜZENLE</a> 
+						<a href="#sign-in-dialog" class="sign-in button gray popup-with-zoom-anim"><i class="sl sl-icon-close"></i> SİL</a>
+					</div>
+				</div>
+				{% endfor %}
+				</li>
+			</form>
+
+				
+			 
+
+			 
+
+			 
+
+			</ul>
+		</div>
+	</div>
+
+
+ 
+
+</div>
+
+
+<!-- Sign In Popup -->
+<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+
+	<div class="small-dialog-header">
+		<h4>Bu kaydı silmek istediğine emin misin?</h4>
+	</div>
+
+	<!--Tabs -->
+	<div class="sign-in-form style-1">
+
+	 
+
+		<form action="post">
+			<div class="tabs-container alt"> 
+				<h5 class="text-dark"  >Geri dönüşü olmayan bir işlem yapmak üzeresin. <br> Onaylıyor musun?</h5> 
+				<div class="form-row">
+					<input type="submit" class="button border margin-top-30" name="login" value="Onayla" style="width:100% ;">
+				</div>
+			</div>
+		</form>
+
+
+
+	</div>
+</div>
+<!-- Sign In Popup / End -->
+
+<style>
+	.dashboard-list-box-static .button {
+    padding: 7px 15px;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+ 
+ 	<!-- Content
+	================================================== -->
+  
+
+		<div class="row">
+			<form method="post" action="" name="User" id="UserInfo" autocomplete="on">
+
+				<!-- Profile -->
+				<div class="col-lg-6 col-md-12">
+					{% csrf_token %}
+					<div class="dashboard-list-box margin-top-0">
+						<h4 class="gray">Kullanıcı Bilgilerim</h4>
+						<div class="dashboard-list-box-static">
+							
+							<!-- Avatar -->
+							<div class="edit-profile-photo">
+								<img src="/static/front_end/images/user-avatar.jpg" alt="">
+								<div class="change-photo-btn">
+									<div class="photoUpload">
+										<span><i class="fa fa-upload"></i> Upload Photo</span>
+										<label>Resim</label>
+                            			{{form.image}}
+									</div>
+								</div>
+							</div>
+		
+							<!-- Details -->
+							<div class="my-profile">
+
+								<label>Ad Soyad</label>
+								{{form.name}}
+
+								<label>Telefon</label>
+								{{form.phone_number}}
+
+								<label>Email</label>
+								{{form.email}}
+
+								<label>Açıklama</label>
+								<textarea name="desc" id="desc" cols="3" rows="2">{{form.desc}}</textarea>
+
+							
+							</div>
+		
+							
+
+						</div>
+					</div>
+				</div>
+			
+
+			<!-- Change Password -->
+			
+				{% csrf_token %}
+				<div class="col-lg-6 col-md-12">
+					<div class="dashboard-list-box margin-top-0">
+						<h4 class="gray">Sosyal Medya Hesaplarım</h4>
+						<div class="dashboard-list-box-static">
+
+							<!-- Change Password -->
+							<div class="my-profile">
+								
+								<label><i class="fa fa-twitter"></i> {{form.twitter}}</label>
+								<input placeholder="#" name="twitter" type="text">
+
+								<label><i class="fa fa-facebook-square"></i> {{form.facebook}}</label>
+								<input placeholder="#" name="facebook" type="text">
+
+								<label><i class="fa fa-instagram"></i>{{form.instagram}}</label>
+								<input placeholder="#" name="instagram" type="text">
+
+								<button class="button margin-top-15" type="submit">Değişiklikleri Kaydet</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</form>
+
+ 
+		</div>
+
+ 
+	<!-- Content / End -->
+ 
+
+
+{% endblock %}

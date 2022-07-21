@@ -1,0 +1,82 @@
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+ 
+ 	<!-- Content
+	================================================== -->
+  
+
+		<div class="row">
+
+			<!-- Profile -->
+			<div class="col-lg-12 col-md-12">
+				<div class="dashboard-list-box margin-top-0">
+					<h4 class="gray">Ilan Bilgilerini Güncelle</h4>
+					<div class="dashboard-list-box-static">
+						
+					 
+	
+						<!-- Details -->
+						<div class="my-posts">
+                          
+                                <div class="submit-section">
+							<form action="/file-upload" class="dropzone dz-clickable"><div class="dz-default dz-message"><span><i class="sl sl-icon-plus"></i> Click here or drop files to upload</span></div></form>
+						</div>
+                        
+                             
+						    <form method="post" action="" name="User" id="UserAddPost" autocomplete="on">   
+                      
+							<div class="row">
+								<div class="col-md-4">
+									<label style="display:block ; width:100% ;">Adı Soyadı</label>
+							    <input type="text" name="name" id="name" placeholder="İlan Başlığını yaz" value="Ahmet Demir">
+								</div>
+								<div class="col-md-4">
+									<label style="display:block ; width:100% ;">İl</label>
+							        <select name="il" id="il">
+										<option value="">Lütfen Seç</option>
+										<option value="ISTANBUL">ISTANBUL</option>
+										<option value="ANKARA">ANKARA</option>
+										<option value="MARDIN">MARDIN</option>
+									  </select>
+								</div>
+								<div class="col-md-4">
+									<label style="display:block ; width:100% ;">İlçe</label>
+							      <select name="ilce" id="ilce">
+									<option value="">Lütfen Seç</option>
+									<option value="ISTANBUL">ISTANBUL</option>
+									<option value="ANKARA">ANKARA</option>
+									<option value="MARDIN">MARDIN</option>
+								  </select>
+								</div>
+							</div>
+                           
+                               <label style="display:block ; width:100% ;">Açıklama</label>
+							    <textarea name="desc" id="desc" cols="3" rows="2" placeholder="İlan Açıklamasını yaz">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).								</textarea>
+							</form>
+						</div>
+
+
+	
+						<button class="button margin-top-15">Güncelle</button>
+
+					</div>
+				</div>
+			</div>
+
+		 
+
+ 
+		</div>
+
+ 
+	<!-- Content / End -->
+ 
+<style>
+    .change-photo-btn,.change-photo-btn:hover {
+        background-color: #f91942;
+        color:#fff;
+    }
+</style>
+
+{% endblock %}

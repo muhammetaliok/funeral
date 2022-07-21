@@ -1,0 +1,141 @@
+{% extends "back_end/base/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js" charset="utf-8"></script>
+
+<div class="container mt-3" >
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 text-right mb-3 mt-2">
+        <input type="text" class="form-control rounded-0" id="search" placeholder="Arama Yap.." autocomplete="off" style="border-color:#d2d2d2 !important;">
+    </div>
+<h3 class="w-100 text-center mb-4">Kullanici İLETİŞİM Listesi</h3>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+             <th scope="col">Adı Soyadı</th>
+
+            <th scope="col">E-mail</th>
+            <th scope="col">Mesaj</th>
+            <th scope="col">Detay</th>
+          </tr>
+        </thead>
+        <tbody  id="searchBody">
+          {% for b in userBilgi %}
+          <tr class="list-item">
+             <td><span>{{b.full_name}}</span> </td>
+             <td><span>{{b.email}}</span> </td>
+
+             {% if b.message  %}
+             <td><span>{{b.message|truncatewords:25}}</span> </td>
+             {% else %}
+             <td><span></span> </td>
+             {% endif %}
+
+             <td>
+              <!-- <span class="btn btn-sm btn-primary mb-2 " title="Daha Fazla Detay"><a href="{% url 'website:update_user' b.id %}"  class="text-white"><i class="fa fa-eye"></i></a></span> -->
+              <a href="{% url 'website:update_user' b.id %}" class="btn btn-sm btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+              <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger  mb-2 "  onclick="return confirm_delete()" title="delete this data" ><i class="fa fa-trash"></i></button>
+                 <input type="hidden" name="delete" value="{{b.id}}">
+              </form>
+             </td>
+          </tr>
+
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    <div id="pagination-container"></div>
+
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+     function confirm_delete() {
+      return confirm('You are about to delete one track, this procedure is irreversible. Do you want to proceed?');
+    }
+
+
+    var $rows = $('#searchBody tr');
+ $('#search').keyup(function() {
+     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+     $rows.show().filter(function() {
+         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+         return !~text.indexOf(val);
+     }).hide();
+ });
+
+
+
+    // jQuery Plugin: http://flaviusmatis.github.io/simplePagination.js/
+
+   var items = $(".list-wrapper .list-item");
+       var numItems = items.length;
+       var perPage = 4;
+
+       items.slice(perPage).hide();
+
+       $('#pagination-container').pagination({
+           items: numItems,
+           itemsOnPage: perPage,
+           prevText: "&laquo;",
+           nextText: "&raquo;",
+           onPageClick: function (pageNumber) {
+               var showFrom = perPage * (pageNumber - 1);
+               var showTo = showFrom + perPage;
+               items.hide().slice(showFrom, showTo).show();
+           }
+       });
+</script>
+<style media="screen">
+
+
+  .simple-pagination ul {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  }
+
+  .simple-pagination li {
+  display: inline-block;
+  margin-right: 5px;
+  }
+
+  .simple-pagination li a,
+  .simple-pagination li span {
+  color: #666;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid #EEE;
+  background-color: #FFF;
+  box-shadow: 0px 0px 10px 0px #EEE;
+  }
+
+  .simple-pagination .current {
+  color: #343a40;
+  background-color: #ffd0d0;
+  }
+
+  .simple-pagination .prev.current,
+  .simple-pagination .next.current {
+  background:  #e8e8e8;
+  }
+  </style>
+
+{% endblock %}

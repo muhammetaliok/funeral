@@ -1,0 +1,135 @@
+{% extends "back_end/base/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-3" >
+
+
+
+  <div class="card mb-5">
+            <div class="card-body">
+               <h5 class="card-title w-100 text-center" style="font-size: 25px;">
+
+                <small class="float-left" style="padding: 5px; border: 1px solid #147ec5; border-radius: 23px; width: 35px; height: 35px; font-size: 19px; position: absolute; left: 15px;">
+                  <a href="{% url 'website:admin_kurumsal' %}">
+                      <i class="fa fa-arrow-left" style="color:#147ec5;"></i>
+                  </a>
+               </small> Kurumsal Güncelle</h5>
+               <form method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <div class="row">
+                       <div class="form-group col-12 m-auto" style="border:1px solid #ddd; padding:15px 15px;">
+ 
+
+                           <div class="inputgroup mt-4">
+                            <label  class="text-left w-100">Kurumsal Başlığı</label>
+                                    {{form.kurumsal_title}}
+                           </div>
+                           <div class="inputgroup mt-4">
+                            <label class="text-left w-100">Kurumsal Açıklaması</label>
+                            {{form.media}}
+
+                                    {{form.kurumsal_description}}
+                           </div>
+                           
+
+                          <div class="inputgroup mt-4 text-center">
+                           <button type="submit" id="submit" name="submit" class="btn btn-success w-100 rounded-0">Güncelle</button>
+                         </div>
+                     </div>
+
+                    </div>
+
+               </form>
+
+            </div>
+      </div>
+
+
+
+</div>
+
+<style>
+  .django-ckeditor-widget {display: contents !important;}
+  .card_features {    box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 4px 0 rgb(0 0 0 / 19%);}
+  .where {
+    display: block;
+    margin: 25px 15px;
+    font-size: 11px;
+    color: #000;
+    text-decoration: none;
+    font-family: verdana;
+    font-style: italic;
+  }
+  
+  .filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+  }
+  
+  .filebox label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+  }
+  
+  /* named upload */
+  .filebox .upload-name {
+    display: none;
+  }
+  
+  /* imaged preview */
+  .filebox .upload-display {
+    margin-bottom: 5px;
+  }
+  
+  @media(min-width: 768px) {
+    .filebox .upload-display {
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 0;
+    }
+  }
+  
+  .filebox .upload-thumb-wrap {
+    display: inline-block;
+    width: 140px;
+    padding: 2px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .filebox .upload-display img {
+    display: block;
+    max-width: 100%;
+    width: 100% \9;
+    height: auto;
+  }
+  
+  .filebox.bs3-primary label {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+  }
+  #cke_1_contents {height: auto !important;}
+  
+  </style>
+
+{% endblock %}
