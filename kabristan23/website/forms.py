@@ -156,12 +156,3 @@ class Payment(forms.ModelForm):
     class Meta:
         model = payment
         fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
-
-class BookForm(forms.ModelForm):
-    name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Kitap Adı'}))
-    author= forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Yazar'}))
-    description = forms.CharField(max_length=100000,widget=CKEditorWidget(attrs={'class':'form-control rounded-0 w-100', 'placeholder': 'Hizmet Açıklama İngilizce' ,'required': 'required' , 'rows':6,}))
-    
-    class Meta:
-        model = Book
-        fields = ['name','author','description']

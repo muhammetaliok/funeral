@@ -36,9 +36,4 @@ path('user-password/',views.user_password,name='user_password'),
 
 path ('payment/',views.payment_method,name='payment'),
 
-path('add-book/',views.add_book,name='add-book'),
-path('list-book/',views.list_book,name='list-book'),
-path('update-book/<int:id>/',views.update_book,name='update_book'),
-path('delete-book/<int:id>/',views.delete_book,name='delete_book'),
-
 ]

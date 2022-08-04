@@ -184,11 +184,3 @@ class payment (models.Model):
 
     def _str_(self):
         return self.cardholder_name
-
-class Book(models.Model):
-    author = models.CharField(max_length=60,blank=True,null=True)
-    name = models.CharField(max_length=100,blank=True,null=True)
-    description = models.TextField(max_length=1000,blank=True,null=True)
-        
-    def __str__(self):
-        return self.name

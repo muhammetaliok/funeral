@@ -13,6 +13,6 @@ admin.site.register(userAddPost)
 admin.site.register(userPassword)
 admin.site.register(listComment)
 admin.site.register(payment)
-admin.site.register(Book)
+
 
 
