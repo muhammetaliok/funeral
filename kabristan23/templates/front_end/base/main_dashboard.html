@@ -64,7 +64,9 @@
 						
 						<!-- User Menu -->
 						<div class="user-menu">
-							<div class="user-name"><span><img src="/static/front_end/images/dashboard-avatar.jpg" alt=""></span></div>
+						{% for item in getUserInfo %}
+							<div class="user-name"><span><img src{="{{item.image.url}}" alt=""></span></div>
+					    {% endfor %}
 							 
 						</div>
 	
@@ -107,10 +109,21 @@
 						</ul>	
 					</li> 
 				</ul>	
+				
 				<ul data-submenu-title="Blog">
 					<li><a><i class="sl sl-icon-layers"></i> Bloglarım</a>
 						<ul>
 							<li><a href="/add-blog">Blog Ekle </a></li> 
+							
+						</ul>	
+					</li> 
+				</ul>	
+
+				<ul data-submenu-title="Qr Kod">
+					<li><a><i class="sl sl-icon-layers"></i> Qr Kod </a>
+						<ul>
+							<li><a href="/add-qr">Qr Kod Ekle </a></li> 
+							<li><a href="/qr-list">Qr Kod Listesi </a></li> 
 						</ul>	
 					</li> 
 				</ul>	

@@ -1,3 +1,4 @@
+from string import capwords
 from tkinter import Widget
 from xml.etree.ElementTree import Comment
 from django import forms
@@ -31,11 +32,12 @@ class DetayCreate(forms.ModelForm):
     surname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Soy İsminiz'}))
     birth_date = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control rounded-0 w-100', 'placeholder': 'Doğum Tarihiniz' ,'required': 'required' , 'rows':6,}))
     death_date = forms.DateField(widget=forms.DateInput(attrs={'class':'form-control rounded-0 w-100', 'placeholder': 'Ölüm Tarihiniz' ,'required': 'required' , 'rows':6,}))
+    email = forms.CharField(max_length=550, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'mail'}))
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Numaranız'}))
     image = forms.ImageField()
     city = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Şehir'}))
     adres = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Adresiniz'}))
-    desc = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Açıklama'}))
+    desc = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Açıklama'}))
     slug = forms.SlugField( )
     twitter = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'twitter'}))
     facebook = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'facebook'}))
@@ -43,7 +45,7 @@ class DetayCreate(forms.ModelForm):
 
     class Meta:
         model = KisiDetay
-        fields = ['name','surname','birth_date','death_date','phone_number','image','city','adres','desc','slug','twitter','facebook','instagram']
+        fields = ['name','surname','birth_date','email','death_date','phone_number','image','city','adres','desc','slug','twitter','facebook','instagram']
 
     def clean(self):
         if self.is_valid():
@@ -77,18 +79,18 @@ class blogForm(forms.ModelForm):
 class contactForm(forms.ModelForm):
     name = forms.CharField(max_length=550, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'name'}))
     email = forms.CharField(max_length=550, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'mail'}))
-    subject = forms.CharField(max_length=550, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'subject'}))
+    subjects = forms.CharField(max_length=550, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'subject'}))
     comments = forms.CharField(max_length=100000,widget=CKEditorWidget(attrs={'class':'form-control rounded-0 w-100', 'placeholder': 'message' ,'required': 'required' , 'rows':6,}))
     class Meta:
         model = ContactModel
-        fields = ['name','email','subject','comments']
+        fields = ['name','email','subjects','comments']
 
 class UserInfo(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İsminiz'}))
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Numaranız'}))
     image = forms.ImageField()
     email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'email'}))
-    desc = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'desc'}))
+    desc = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Açıklama'}))
     twitter = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'twitter'}))
     facebook = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'facebook'}))
     instagram = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'instagram'}))
@@ -113,6 +115,7 @@ class UserAddPost(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İsminiz'}))
     il = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İl'}))
     ilce = forms.ChoiceField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İlçe'}))
+    desc =forms.CharField(widget=forms.Textarea(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Açıklama'}))
     
 
     class Meta:
@@ -144,3 +147,21 @@ class ListComment(forms.ModelForm):
         model = listComment
         fields = ['name','email','comment','comment_date']
     
+class Payment(forms.ModelForm):
+    cardholder_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+    card_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+    card_cvv = forms.IntegerField()
+    card_valid_thru = forms.IntegerField()
+
+    class Meta:
+        model = payment
+        fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
+
+class BookForm(forms.ModelForm):
+    name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Kitap Adı'}))
+    author= forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Yazar'}))
+    description = forms.CharField(max_length=100000,widget=CKEditorWidget(attrs={'class':'form-control rounded-0 w-100', 'placeholder': 'Hizmet Açıklama İngilizce' ,'required': 'required' , 'rows':6,}))
+    
+    class Meta:
+        model = Book
+        fields = ['name','author','description']

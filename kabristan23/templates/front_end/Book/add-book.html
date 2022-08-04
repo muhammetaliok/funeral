@@ -1,0 +1,13 @@
+
+{% extends "front_end/Book/base.html" %}
+{% block content %}
+<div class="card-body">
+    <h5>Create New Book</h5>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <a type="button" class="btn btn-danger" href="{%url 'website:list-book' %}">Cancel</a>
+        <button type="submit" class="btn btn-success" href="{% url 'website:list-book' %}">Create</button>
+    </form>
+</div>
+{% endblock %}

@@ -2,6 +2,47 @@
 {% load static %}
 {% block content %}
  
-TUM YORUMLAR
+
+ 
+    <div class="row">
+			
+        <!-- Listings -->
+        <div class="col-lg-12 col-md-12">
+            <div class="dashboard-list-box margin-top-0">
+                <h4>Onaylanan Yorumlar</h4>
+                <ul>
+
+                    <li>
+                        <div class="list-box-listing">
+                        <!-- {% for item in getKisi %}
+                            <div class="list-box-listing-img"><a href="#"><img src="{{item.image.url}}" alt=""></a></div>
+                        {% endfor %} -->
+                            <div class="list-box-listing-content">
+                            
+                                <div class="inner">
+                                    <h3><a href="#">{{get_valid.name}} </a></h3>
+                                    <span>  
+                                        <small>{{get_valid.comment}} </small>
+                                    </span>
+                                </div>
+                                
+                           
+                            </div>
+                        </div>
+                        <!-- <div class="buttons-to-right"> 
+                            <a href="/user-comments" class="button border" style="float:right;     margin: -10px 0 0 0;">Onayla  </a>
+                        </div> -->
+                    </li> 
+
+                    
+ 
+
+                </ul>
+            </div>
+        </div>
+
+ 
+    </div>
+ 
 
 {% endblock %}

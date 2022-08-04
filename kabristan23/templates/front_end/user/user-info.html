@@ -1,7 +1,14 @@
 {% extends "front_end/base/main_dashboard.html" %}
 {% load static %}
 {% block content %}
- 
+ <style>
+	#id_image{
+		position: absolute;
+    background: transparent;
+    bottom: -15px;
+    opacity: 0;
+	}
+ </style>
  	<!-- Content
 	================================================== -->
   
@@ -41,7 +48,7 @@
 								{{form.email}}
 
 								<label>Açıklama</label>
-								<textarea name="desc" id="desc" cols="3" rows="2">{{form.desc}}</textarea>
+								{{form.desc}}
 
 							
 							</div>
@@ -64,14 +71,14 @@
 							<!-- Change Password -->
 							<div class="my-profile">
 								
-								<label><i class="fa fa-twitter"></i> {{form.twitter}}</label>
-								<input placeholder="#" name="twitter" type="text">
+								<label><i class="fa fa-twitter"></i></label>
+								{{form.twitter}}
 
-								<label><i class="fa fa-facebook-square"></i> {{form.facebook}}</label>
-								<input placeholder="#" name="facebook" type="text">
+								<label><i class="fa fa-facebook-square"></i></label>
+								{{form.facebook}}
 
-								<label><i class="fa fa-instagram"></i>{{form.instagram}}</label>
-								<input placeholder="#" name="instagram" type="text">
+								<label><i class="fa fa-instagram"></i></label>
+								{{form.instagram}}
 
 								<button class="button margin-top-15" type="submit">Değişiklikleri Kaydet</button>
 							</div>

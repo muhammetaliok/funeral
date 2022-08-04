@@ -1,0 +1,117 @@
+class KisiDetay(models.Model):
+    # url=models.URLField(default="Some String")
+    name = models.CharField(max_length=200,blank=True,null=True)
+    surname = models.CharField(max_length=200,blank=True,null=True)
+    birth_date = models.DateField(max_length=200,blank=True,null=True)
+    email = models.EmailField(max_length=254, null=True, blank=True)
+    death_date = models.DateField(max_length=200,blank=True,null=True)
+    phone_number = models.CharField(max_length=200,blank=True,null=True)
+    image = models.ImageField(null = False ,blank=True)
+    city = models.CharField(max_length=200,blank=True,null=True)
+    adres = models.CharField(max_length=400,blank=True,null=True)
+    desc = models.CharField(max_length=10000,null=True,blank=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True,null=True)
+    twitter = models.CharField(max_length=50,blank=True,null=True)
+    facebook = models.CharField(max_length=50,blank=True,null=True)
+    instagram = models.CharField(max_length=50,blank=True,null=True)
+    
+    def __str__(self):
+        return self.name 
+
+    def get_unique_slug(self):
+        sayi=0
+        slug = slugify(unidecode(self.name))
+        new_slug=slug
+        while KisiDetay.objects.filter(slug=new_slug).exists():
+            sayi+=1
+            new_slug="%s-%s"%(slug,sayi)
+        slug = new_slug
+        return slug
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            name = self.get_unique_slug()
+            self.slug = slugify(unidecode(name))
+        else:
+            kisi=KisiDetay.objects.get(slug=self.slug)
+            if kisi.name != self.name:
+                self.slug=self.get_unique_slug()
+        super(KisiDetay,self).save()
+    
+
+        Sign In Popup
+			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+ 
+				<!--Tabs -->
+				<div class="sign-in-form style-1">
+
+				 
+
+					<div class="tabs-container alt">
+
+						<!-- Login -->
+						<div class="tab-content" id="tab1" style="display: none;">
+							<form method="post" class="login">
+
+								<p class="form-row form-row-wide">
+									 Yorumu onaylamak  istediğine emin misin?
+								</p>
+                                <div class="form-group">
+
+                                    <a  href="{%url 'website:user_comments' %}" class="button border  "  >Evet  </a>
+                                    <a  href="/user-approve-comments" class="button border  " >Hayir  </a>
+
+                                </div>
+								 
+								
+							</form>
+						</div>
+
+					 
+
+					</div>
+				</div>
+			</div>
+			<!-- Sign In Popup / End -->
+
+        </ul>
+        
+    </div>
+</div>
+
+
+
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="col-12">
+    <div class="dashboard-list-box invoices with-icons margin-top-20">
+        <h4>Onay Bekleyen Yorumlar</h4>
+        <ul>
+            {% for item in getComment %}
+            
+            <li>
+                <i class="list-box-icon fa fa-commenting-o"></i>
+                <ul>
+                    <li class="unpaid">{{item.name}}</li>
+                    <li> <small>{{item.comment}}</small> </li>
+                    <a href="#" class="button border" style="float:right;     margin: -10px 0 0 0;">Onayla  </a>
+                    
+                </ul> 
+                
+            </li>
+                  
+
+        {% endfor %}
+
+        </ul>
+       
+    </div>
+</div>
+
+
+
+{% endblock %}

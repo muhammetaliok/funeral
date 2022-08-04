@@ -1,0 +1,200 @@
+{% extends "front_end/base/main_dashboard.html" %}
+{% load static %}
+{% block content %}
+ 
+ <div class="row" style="display:flex; justify-content:center; "> 
+    <div class="col-md-5" > 
+
+        <div class="card"> 
+        <form action="" method="POST" id="Payment">
+            <div class="card-details"> <input type="text" name="card_number" placeholder="0000 0000 0000 0000" data-slots="0" max_lenght="19" data-accept="\d"> <span>Kart numarası</span> <i class="fa fa-credit-card"></i> </div>
+            <div class="exp-cvv">
+                <div class="card-details"> <input type="text" name="card_valid_thru" placeholder="mm/yyyy" data-slots="my"> <span>Son kullanma tarihi</span> <i class="fa fa-calendar"></i> </div>
+                <div class="card-details"> <input type="text" name="card_cvv" placeholder="000" data-slots="0" data-accept="\d" max_lenght="3" > <span>CVV</span> <i class="fa fa-info-circle"></i> </div>
+            </div>
+            <div class="card-details mt-25"> <input type="text" name="cardholder_name" > <span>Kart Sahibinin Adı </span> </div>
+           
+            <div class="button" type="submit"> <button>Ödeme Yap</button> </div>
+        </form>
+        </div>
+
+        
+    </div> 
+</div> 
+
+
+
+<style>
+ 
+
+.card {
+    
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 15px
+}
+
+.card hr {
+    border-top: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin-top: 10px
+}
+
+.card h3 {
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: 900
+}
+
+.card-details {
+    position: relative
+}
+
+.card-details input {
+    width: 100%;
+    height: 60px;
+    padding: 6px 22px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    outline: none;
+    border-radius: 10px;
+    caret-color: #3769D3;
+    font-size: 16px;
+    transition: all 1s
+}
+
+.card-details input:focus {
+    border: 3px solid #3769D3
+}
+
+.card-details input:focus~span {
+    color: #3769D3;
+    font-weight: 900
+}
+
+.card-details input:focus~i {
+    color: #3769D3
+}
+
+.card-details span {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: white;
+    font-size: 14px;
+    padding: 0px 5px;
+    transition: all 1s
+}
+
+.card-details i {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    color: #ccc;
+    z-index: 1000;
+    transition: all 1s
+}
+
+.exp-cvv {
+    margin-top: 25px;
+    display: flex;
+    flex: 0 50%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+     
+}
+
+ 
+
+.tick {
+    display: flex;
+    padding: 20px 10px;
+    align-items: center
+}
+
+.tick span {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff
+}
+
+.d-none {
+    display: none
+}
+
+.tick p {
+    margin-left: 15px;
+    font-weight: 900;
+    font-size: 18px
+}
+
+.p-blue {
+    background-color: blue !important
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.button button {
+    height: 60px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.5s;
+    cursor: pointer;
+    border: none
+}
+
+.button button:hover {
+    background-color: #040481
+}
+</style>
+
+<script>
+    var tick=document.querySelector(".tick span");
+var tick_mark=document.querySelector(".tick span i");
+tick.addEventListener('click',function(){
+
+tick.classList.toggle('p-blue');
+tick_mark.classList.toggle('d-none');
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+for (const el of document.querySelectorAll("[placeholder][data-slots]")) {
+const pattern = el.getAttribute("placeholder"),
+slots = new Set(el.dataset.slots || "_"),
+prev = (j => Array.from(pattern, (c,i) => slots.has(c)? j=i+1: j))(0),
+first = [...pattern].findIndex(c => slots.has(c)),
+accept = new RegExp(el.dataset.accept || "\\d", "g"),
+clean = input => {
+input = input.match(accept) || [];
+return Array.from(pattern, c =>
+input[0] === c || slots.has(c) ? input.shift() || c : c
+);
+},
+format = () => {
+const [i, j] = [el.selectionStart, el.selectionEnd].map(i => {
+i = clean(el.value.slice(0, i)).findIndex(c => slots.has(c));
+return i<0? prev[prev.length-1]: back? prev[i-1] || first: i; }); el.value=clean(el.value).join``; el.setSelectionRange(i, j); back=false; }; let back=false; el.addEventListener("keydown", (e)=> back = e.key === "Backspace");
+    el.addEventListener("input", format);
+    el.addEventListener("focus", format);
+    el.addEventListener("blur", () => el.value === pattern && (el.value=""));
+    }
+    });
+</script>
+{% endblock %}

@@ -17,15 +17,14 @@
 					 
 						
 						<!-- Details -->
+						<form method="post" action="" name="User" id="UserAddPost" autocomplete="on">
 							<div class="my-posts">
 							
-								<div class="submit-section">
-									<form action="/file-upload" class="dropzone dz-clickable"><div class="dz-default dz-message"><span><i class="sl sl-icon-plus"></i> Click here or drop files to upload</span></div></form>
-								</div>
+								<div class="filebox  preview-image text-center">                        
+									<label for="input_file">Yeni Resim Seç</label>
+									<input type="file" name="image" accept="image/*" id="input_file" class="upload-hidden">
 							
-								
-								<form method="post" action="" name="User" id="UserAddPost" autocomplete="on">
-									
+								  </div>
 						
 								<div class="row">
 									<div class="col-md-4">
@@ -57,10 +56,11 @@
 
 									<button type="submit" class="button margin-top-15">Kaydet</button>
 								
-							</form>
+							
 
 								
-							</div>					
+							</div>	
+						</form>				
 					</div>
 				</div>
 			</div>

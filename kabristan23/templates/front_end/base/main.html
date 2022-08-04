@@ -78,141 +78,37 @@
 
 			<!-- Right Side Content / End -->
 			<div class="right-side">
-				<!-- Header Widget --> 
-                <div class="header-widget">
-						
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'website:home' %}"></a>
-                    {% else %}
-                    <a href="{% url 'website:login' %}"></a>
-                    {% endif %}
-                                                        
-                 </div> 
-            <!-- Header Widget / End -->
-        </div>
-        <!-- Right Side Content / End -->
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_authenticated %}
-                
-                <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Welcome, {{user.username}}</a>
-                </li>
-        
-                {% else %}
-        
-                <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-                </li>
-
-                <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
-                </li>
-        
-                {% endif %}
-            </ul>
-            </div>
-        </nav>
-			<!-- Sign In Popup -->
-			<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-
-				<div class="small-dialog-header">
-					<h3>KAYIT OL / GİRİŞ YAP</h3>
-				</div>
-
-				<!--Tabs -->
-				<div class="sign-in-form style-1">
-
-					<ul class="tabs-nav">
-						<li class=""><a href="#tab1">Giriş Yap</a></li>
-						<li><a href="#tab2">Kayıt Ol</a></li>
-					</ul>
-
-					<div class="tabs-container alt">
-
-						<!-- Login -->
-						<div class="tab-content" id="tab1" style="display: none;">
-							<form method="post" class="login">
-
-								<p class="form-row form-row-wide">
-									<label for="username">E-Mail:
-										<i class="im im-icon-Male"></i>
-										<input type="email" class="input-text" name="username" id="username" value="" />
-									</label>
-								</p>
-
-								<p class="form-row form-row-wide">
-									<label for="password">Şifre:
-										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="password" id="password"/>
-									</label>
-									<span class="lost_password">
-										<a href="#" >Şifremi Unuttum?</a>
-									</span>
-								</p>
-
-								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
-									<div class="checkboxes margin-top-10">
-										<input id="remember-me" type="checkbox" name="check">
-										<label for="remember-me">Beni Hatırla!</label>
-									</div>
-								</div>
-								
-							</form>
-						</div>
-
-						<!-- Register -->
-						<div class="tab-content" id="tab2" style="display: none;">
-
-							<form method="post" class="register">
-								
-							<p class="form-row form-row-wide">
-								<label for="username2">Adı Soyadı:
-									<i class="im im-icon-Male"></i>
-									<input type="text" class="input-text" name="username" id="username2" value="" />
-								</label>
-							</p>
-								
-							<p class="form-row form-row-wide">
-								<label for="email2">Email Adresı:
-									<i class="im im-icon-Mail"></i>
-									<input type="text" class="input-text" name="email" id="email2" value="" />
-								</label>
-							</p>
-
-							<p class="form-row form-row-wide">
-								<label for="password1">Şifre:
-									<i class="im im-icon-Lock-2"></i>
-									<input class="input-text" type="password" name="password1" id="password1"/>
-								</label>
-							</p>
-
-							<p class="form-row form-row-wide">
-								<label for="password2">Şifre Tekrar:
-									<i class="im im-icon-Lock-2"></i>
-									<input class="input-text" type="password" name="password2" id="password2"/>
-								</label>
-							</p>
-
-							<input type="submit" class="button border fw margin-top-10" name="register" value="Kayıt Ol" />
-	
-							</form>
-						</div>
-
+				<!-- Header Widget -->
+				<div class="header-widget">
+					{% if user.is_authenticated %}
+					<!-- User Menu -->
+					<div class="user-menu">
+						<div class="user-name">Merhaba {{user.username}}</div>
+						<ul>
+							<li><a href="/logout"><i class="sl sl-icon-settings"></i> Çıkış Yap</a></li> 
+						</ul>
 					</div>
+
+					{% else %}
+
+				<!-- User Menu -->
+				<div class="user-menu">
+					<div class="user-name">Hesabın Yokmu</div>
+					<ul>
+						<li><a href="/login"><i class="sl sl-icon-settings"></i> Giriş Yap</a></li> 
+						<li><a href="/register"><i class="sl sl-icon-settings"></i> Kayıt Ol</a></li> 
+					</ul>
 				</div>
+
+					{% endif %}
+
+				</div>
+				<!-- Header Widget / End -->
 			</div>
-			<!-- Sign In Popup / End -->
+
+				
+		
+  
 
 		</div>
 	</div>

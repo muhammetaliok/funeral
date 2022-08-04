@@ -29,10 +29,11 @@ class systemImageBilgi(models.Model):
 
 
 class KisiDetay(models.Model):
-    # url=models.URLField(default="Some String")
+    url=models.URLField(max_length = 200)
     name = models.CharField(max_length=200,blank=True,null=True)
     surname = models.CharField(max_length=200,blank=True,null=True)
     birth_date = models.DateField(max_length=200,blank=True,null=True)
+    email = models.EmailField(max_length=254, null=True, blank=True)
     death_date = models.DateField(max_length=200,blank=True,null=True)
     phone_number = models.CharField(max_length=200,blank=True,null=True)
     image = models.ImageField(null = False ,blank=True)
@@ -43,8 +44,16 @@ class KisiDetay(models.Model):
     twitter = models.CharField(max_length=50,blank=True,null=True)
     facebook = models.CharField(max_length=50,blank=True,null=True)
     instagram = models.CharField(max_length=50,blank=True,null=True)
+    images = models.ImageField(upload_to='qrcode',blank=True)
+
     def __str__(self):
         return self.name 
+
+    @property
+    def get_image_or_default(self):
+       if self.images and hasattr(self.images, 'url'):
+           return self.images.url
+       return '/media/category_image/default_image/default.webp'
 
     def get_unique_slug(self):
         sayi=0
@@ -61,10 +70,22 @@ class KisiDetay(models.Model):
             name = self.get_unique_slug()
             self.slug = slugify(unidecode(name))
         else:
-            kisi=KisiDetay.objects.get(slug=self.slug)
-            if kisi.name != self.name:
+            blog=KisiDetay.objects.get(slug=self.slug)
+            if blog.name != self.name:
                 self.slug=self.get_unique_slug()
+        qrcode_img=qrcode.make(self.url)
+        canvas=Image.new("RGB", (300,300),"white")
+        draw=ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        buffer=BytesIO()
+        canvas.save(buffer,"PNG")
+        self.images.save(f'image{random.randint(0,9999)}',File(buffer),save=False)
+        canvas.close()
+
         super(KisiDetay,self).save()
+    
+       
+
 
 class BlogCategory(models.Model):
     name = models.CharField(max_length = 250,null=True,blank=True)
@@ -78,6 +99,9 @@ class blogBilgi(models.Model):
     blog_description = models.CharField(max_length = 10000, null=True, blank=True)
     slug = models.SlugField(max_length=100, unique=True, blank=True,null=True)
     image = models.ImageField(null = False,blank=True)
+
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return self.blog_title 
@@ -105,7 +129,7 @@ class blogBilgi(models.Model):
 class ContactModel(models.Model):
     name = models.CharField(max_length = 150, null=True, blank=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
-    subject = models.CharField(max_length = 150, null=True, blank=True)
+    subjects = models.CharField(max_length = 150, null=True, blank=True)
     comments = models.TextField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
@@ -117,7 +141,7 @@ class userInfo(models.Model):
     phone_number = models.CharField(max_length=200,blank=True,null=True)
     email = models.CharField(max_length=200,blank=True,null=True)
     image = models.ImageField(null = False ,blank=True)
-    desc = models.CharField(max_length=400,blank=True,null=True)
+    desc = models.CharField(max_length=1000,blank=True,null=True)
     twitter = models.CharField(max_length=50,blank=True,null=True)
     facebook = models.CharField(max_length=50,blank=True,null=True)
     instagram = models.CharField(max_length=50,blank=True,null=True)
@@ -130,7 +154,7 @@ class userAddPost(models.Model):
     il = models.CharField(max_length=200,blank=True,null=True)
     ilce = models.CharField(max_length=200,blank=True,null=True)
     image = models.ImageField(null = False ,blank=True)
-    desc = models.CharField(max_length=400,blank=True,null=True)
+    desc = models.CharField(max_length=10000,blank=True,null=True)
 
     def __str__(self):
         return self.name
@@ -147,6 +171,24 @@ class listComment(models.Model):
     email = models.EmailField(max_length=130,null=True,blank=True)
     comment = models.TextField(max_length=1000,null=True,blank=True)
     comment_date = models.DateTimeField(null=True,blank=True)
+    is_valid = models.BooleanField(default=0)
 
+    def __str__(self):
+        return self.name
+
+class payment (models.Model):
+    card_cvv = models.CharField(max_length=3,blank=True,null=True)
+    card_valid_thru = models.CharField(max_length=7,blank=True,null=True)
+    cardholder_name = models.CharField(max_length=200,blank=True,null=True)
+    card_number = models.CharField(max_length=30,blank=True,null=True)
+
+    def _str_(self):
+        return self.cardholder_name
+
+class Book(models.Model):
+    author = models.CharField(max_length=60,blank=True,null=True)
+    name = models.CharField(max_length=100,blank=True,null=True)
+    description = models.TextField(max_length=1000,blank=True,null=True)
+        
     def __str__(self):
         return self.name

@@ -15,7 +15,7 @@
 				<!-- Breadcrumbs -->
 				<nav id="breadcrumbs">
 					<ul>
-						<li><a href="#">Anasayfa</a></li>
+						<li><a href="/">Anasayfa</a></li>
 						<li>Blog</li>
 					</ul>
 				</nav>
@@ -34,17 +34,19 @@
 	<div class="blog-page">
 	<div class="row">
 		<div class="col-lg-9 col-md-8 padding-right-30">
-		{% for item in getBlog %} 
+		{% for item in venues %} 
 
 			<!-- Blog Post -->
 			<div class="blog-post">
 				
 				<!-- Img -->
+				
 				{% if item.image %}
-				<a href="{% url 'website:blog_details' item.slug %}" class="post-img">				
-					<img src="{{item.image.url}}" class="image" alt="image">				
-				</a>
+					<a href="{% url 'website:blog_details' item.slug %}" class="post-img">				
+						<img src="{{item.image.url}}" class="image" alt="image">				
+					</a>
 				{% endif %}
+				
 				
 				
 				<!-- Content -->
@@ -71,12 +73,19 @@
 			<div class="row">
 				<div class="col-md-12">
 					<!-- Pagination -->
+					{{ venues }}
 					<div class="pagination-container margin-bottom-40">
 						<nav class="pagination">
 							<ul>
-								<li><a href="#" class="current-page">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
+								{% if venues.has_previous  %}
+									<li><a href="?page={{venues.previous_page_number}}">Önceki sayfa</a></li>
+								{% endif %}
+								<li><a href="#"><i class="sl sl-icon-arrow-left"></i></a></li>
+								<!-- <li><a href="#" class="current-page">1</a></li> -->
+								{% if venues.has_next %}
+									<li><a href="?page={{venues.next_page_number}}">Sonraki sayfa</a></li>
+								{% endif %} 
+								<!-- <li><a href="#">3</a></li> -->
 								<li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
 							</ul>
 						</nav>
@@ -118,11 +127,11 @@
 						{% for item in getBlog %}
 						<div class="widget-content">
 								<div class="widget-thumb">
-								<a href="/blog-details"><img src="{{item.image.url}}" alt=""></a>
+								<a href="{% url 'website:blog_details' item.slug %}"><img src="{{item.image.url}}" alt=""></a>
 							</div>
 							
 							<div class="widget-text">
-								<h5><a href="/blog-details">{{item.blog_title}} </a></h5>
+								<h5><a href="{% url 'website:blog_details' item.slug %}">{{item.blog_title}} </a></h5>
 								<span>{{item.blog_date}}</span>
 							</div>
 							<div class="clearfix"></div>

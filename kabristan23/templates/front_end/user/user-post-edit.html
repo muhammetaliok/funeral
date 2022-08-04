@@ -18,48 +18,52 @@
 	
 						<!-- Details -->
 						<div class="my-posts">
+							<form method="post" action=""> 
                           
-                                <div class="submit-section">
-							<form action="/file-upload" class="dropzone dz-clickable"><div class="dz-default dz-message"><span><i class="sl sl-icon-plus"></i> Click here or drop files to upload</span></div></form>
-						</div>
-                        
-                             
-						    <form method="post" action="" name="User" id="UserAddPost" autocomplete="on">   
-                      
-							<div class="row">
-								<div class="col-md-4">
-									<label style="display:block ; width:100% ;">Adı Soyadı</label>
-							    <input type="text" name="name" id="name" placeholder="İlan Başlığını yaz" value="Ahmet Demir">
+								<div class="filebox  preview-image text-center">                        
+									<label for="input_file">Yeni Resim Seç</label>
+									<input type="file" name="image" accept="image/*" id="input_file" class="upload-hidden">
+							
 								</div>
-								<div class="col-md-4">
-									<label style="display:block ; width:100% ;">İl</label>
-							        <select name="il" id="il">
+	
+						
+								<div class="row">
+									{% csrf_token %}
+									<div class="col-md-4">
+										<label style="display:block ; width:100% ;">Adı Soyadı</label>
+									<input type="text" name="name" id="name" placeholder="İlan Başlığını yaz">
+									</div>
+									<div class="col-md-4">
+										<label style="display:block ; width:100% ;">İl</label>
+										<select name="il" id="il">
+											<option value="">Lütfen Seç</option>
+											<option value="ISTANBUL">ISTANBUL</option>
+											<option value="ANKARA">ANKARA</option>
+											<option value="MARDIN">MARDIN</option>
+										</select>
+									</div>
+									<div class="col-md-4">
+										<label style="display:block ; width:100% ;">İlçe</label>
+									<select name="ilce" id="ilce">
 										<option value="">Lütfen Seç</option>
 										<option value="ISTANBUL">ISTANBUL</option>
 										<option value="ANKARA">ANKARA</option>
 										<option value="MARDIN">MARDIN</option>
-									  </select>
+									</select>
+									</div>
 								</div>
-								<div class="col-md-4">
-									<label style="display:block ; width:100% ;">İlçe</label>
-							      <select name="ilce" id="ilce">
-									<option value="">Lütfen Seç</option>
-									<option value="ISTANBUL">ISTANBUL</option>
-									<option value="ANKARA">ANKARA</option>
-									<option value="MARDIN">MARDIN</option>
-								  </select>
-								</div>
-							</div>
-                           
-                               <label style="display:block ; width:100% ;">Açıklama</label>
-							    <textarea name="desc" id="desc" cols="3" rows="2" placeholder="İlan Açıklamasını yaz">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).								</textarea>
-							</form>
+							
+								<label style="display:block ; width:100% ;">Açıklama</label>
+									<textarea name="desc" id="desc" cols="3" rows="2" placeholder="İlan Açıklamasını yaz"></textarea>
+								
+									<button class="button margin-top-15" type="submit">Güncelle</button>
+								</form>
 						</div>
 
 
 	
-						<button class="button margin-top-15">Güncelle</button>
-
+						
+					
 					</div>
 				</div>
 			</div>

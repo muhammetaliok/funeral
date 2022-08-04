@@ -184,7 +184,7 @@
 
 				<!-- Reviews -->
 				<section class="comments listing-reviews">
-					{% for item in  listComment%}
+					{% for item in listComment %}
 					<ul>
 						<li>
 							
@@ -249,3 +249,14 @@
 
  
 {% endblock %}
+
+<ul id="posts-nav" class="margin-top-0 margin-bottom-45">
+	<li class="next-post">
+		<a href=""><span>Sonraki Haber</span>
+		{{item.blog_title}}</a>
+	</li>
+	<li class="prev-post">
+		<a href="#"><span>Önceki Haber</span>
+		{{item.blog_title}}</a>
+	</li>
+</ul>

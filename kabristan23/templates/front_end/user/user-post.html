@@ -15,7 +15,9 @@
 				<li>
 					{% for item in detay %}
 					<div class="list-box-listing">
-						<div class="list-box-listing-img"><a href="/user-add-post"><img src="/static/front_end/images/listing-item-01.jpg" alt=""></a></div>
+						{% if item.image %}
+							<div class="list-box-listing-img"><a href="/user-add-post"><img src="{{item.image.url}}" class="image" alt="image"></a></div>
+						{% endif %}
 						<div class="list-box-listing-content">
 							<div class="inner">
 								<h3><a href="/user-add-post">{{item.name}}</a></h3>
@@ -25,8 +27,8 @@
 					
 					
 					<div class="buttons-to-right">
-						<a href="/user-post-edit" class="button gray"><i class="sl sl-icon-note"></i> DÜZENLE</a> 
-						<a href="#sign-in-dialog" class="sign-in button gray popup-with-zoom-anim"><i class="sl sl-icon-close"></i> SİL</a>
+						<a href="{% url 'website:user_post_edit' item.id %}" class="button gray"><i class="sl sl-icon-note"></i> DÜZENLE</a> 
+						<a href="{% url 'website:user_post_delete' %}" name="delete" id="delete" class="sign-in button gray popup-with-zoom-anim"><i class="sl sl-icon-close"></i> SİL</a>
 					</div>
 				</div>
 				{% endfor %}
@@ -51,7 +53,7 @@
 
 
 <!-- Sign In Popup -->
-<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
+<div id="delete" class="zoom-anim-dialog mfp-hide">
 
 	<div class="small-dialog-header">
 		<h4>Bu kaydı silmek istediğine emin misin?</h4>

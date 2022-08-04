@@ -57,15 +57,20 @@
 
 
 			<div class="row">
-
+ 
+				{% for item in detay %}
 				<!-- Listing Item -->
 				<div class="col-lg-12 col-md-12">
 					<div class="listing-item-container list-layout">
-						<a href="listings-single-page.html" class="listing-item">
+				
+						<a href="{% url 'website:add_comment' item.slug %}"  class="listing-item">
 							
 							<!-- Image -->
 							<div class="listing-item-image">
-								<img src="https://www.vasterad.com/themes/listeo_22/images/listing-item-01.jpg" alt="">
+								
+							{% if item.image %}							
+								<img src="{{item.image.url}}" name="image" alt="">
+							{% endif %}
 							 
 							</div>
 							
@@ -74,18 +79,19 @@
 							 
 
 								<div class="listing-item-inner">
-									<h3>Mehmet Alptekin <i class="verified-icon"></i></h3>
-									<span>Halkalı Mahallesi, Halkalı Caddesi No:2 İzü TTO İstanbul TR, 34303 Küçükçekmece</span>
+									<h3>{{item.name}} {{item.surname}}<i class="verified-icon"></i></h3>
+									<span>{{item.adres}}</span>
 								 
 								</div>
 
 								<span class="like-icon"></span>
 							</div>
 						</a>
+					
 					</div>
 				</div>
 				<!-- Listing Item / End -->
-
+				{% endfor %}
 			 
 
 			</div>

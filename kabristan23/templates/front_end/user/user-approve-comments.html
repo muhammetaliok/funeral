@@ -1,7 +1,32 @@
 {% extends "front_end/base/main_dashboard.html" %}
 {% load static %}
 {% block content %}
- 
- ONAY BEKLIYOR
+
+
+
+<div class="col-12">
+    <div class="dashboard-list-box invoices with-icons margin-top-20">
+        <h4>Onay Bekleyen Yorumlar</h4>
+        <ul>
+            {% for item in getComment %}
+            <li>
+                <i class="list-box-icon fa fa-commenting-o"></i>
+                <ul>
+                    <li class="unpaid">{{item.name}}</li>
+                    <li> <small>{{item.comment}}</small> </li>
+                    <a href="{% url 'website:user_comments' item.id %}" class="button border" name="myButton" type="submit" style="float:right;     margin: -10px 0 0 0;">Onayla  </a>
+                    
+                </ul> 
+                
+            </li>
+
+        {% endfor %}
+
+        </ul>
+       
+    </div>
+</div>
+
+
 
 {% endblock %}

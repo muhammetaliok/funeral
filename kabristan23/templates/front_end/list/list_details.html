@@ -100,9 +100,9 @@
 					<a href="#" class="hosted-by-avatar"><img src="{{item.image.url}}" alt=""></a>
 				</div>
 				<ul class="listing-details-sidebar">
-					<li><i class="sl sl-icon-phone"></i> {{item.phone_number}}</li>
+
 					<!-- <li><i class="sl sl-icon-globe"></i> <a href="#">http://example.com</a></li> -->
-					<li><i class="fa fa-envelope-o"></i> <a href="#">tom@example.com</a></li>
+					<li><i class="fa fa-envelope-o"></i> <a href="#">{{item.email}}</a></li>
 				</ul>
 
 				<ul class="listing-details-sidebar social-profiles">
@@ -115,8 +115,6 @@
 				<!-- Reply to review popup -->
 			 
 
- 
-                <div class="text-center w-100 mt-4">159 kişi inceledi</div>
 			</div>
         {% endfor %}
 			<!-- Contact / End-->
@@ -185,7 +183,7 @@
 
 				<!-- Reviews -->
 				<section class="comments listing-reviews">
-                    {% for item in  listComment%}
+                    {% for item in listComment%}
 					<ul>
 						<li>
 							<div class="avatar"><img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt=""></div>
