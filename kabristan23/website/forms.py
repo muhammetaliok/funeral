@@ -85,31 +85,6 @@ class contactForm(forms.ModelForm):
         model = ContactModel
         fields = ['name','email','subjects','comments']
 
-class UserInfo(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İsminiz'}))
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Numaranız'}))
-    image = forms.ImageField()
-    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'email'}))
-    desc = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'Açıklama'}))
-    twitter = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'twitter'}))
-    facebook = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'facebook'}))
-    instagram = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'instagram'}))
-
-    class Meta:
-        model = userInfo
-        fields = ['name','phone_number','image','email','desc','twitter','facebook','instagram']
-
-    def clean(self):
-        if self.is_valid():
-            name = self.cleaned_data['name']
-            phone_number = self.cleaned_data['phone_number']
-            image = self.cleaned_data['image']
-            email = self.cleaned_data['email']
-            desc = self.cleaned_data['desc']
-            twitter = self.cleaned_data['twitter']
-            facebook = self.cleaned_data['facebook']
-            instagram = self.cleaned_data['instagram']
-
 class UserAddPost(forms.ModelForm):
     image = forms.ImageField()
     name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off', 'placeholder': 'İsminiz'}))
@@ -147,12 +122,12 @@ class ListComment(forms.ModelForm):
         model = listComment
         fields = ['name','email','comment','comment_date']
     
-class Payment(forms.ModelForm):
-    cardholder_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
-    card_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
-    card_cvv = forms.IntegerField()
-    card_valid_thru = forms.IntegerField()
+#class Payment(forms.ModelForm):
+#    cardholder_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+#    card_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+#    card_cvv = forms.IntegerField()
+#    card_valid_thru = forms.IntegerField()
 
-    class Meta:
-        model = payment
-        fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
+#    class Meta:
+#        model = payment
+#        fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
