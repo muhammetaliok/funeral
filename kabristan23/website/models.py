@@ -136,19 +136,6 @@ class ContactModel(models.Model):
         return self.name
 
 
-class userInfo(models.Model):
-    name = models.CharField(max_length=200,blank=True,null=True)
-    phone_number = models.CharField(max_length=200,blank=True,null=True)
-    email = models.CharField(max_length=200,blank=True,null=True)
-    image = models.ImageField(null = False ,blank=True)
-    desc = models.CharField(max_length=1000,blank=True,null=True)
-    twitter = models.CharField(max_length=50,blank=True,null=True)
-    facebook = models.CharField(max_length=50,blank=True,null=True)
-    instagram = models.CharField(max_length=50,blank=True,null=True)
-
-    def __str__(self):
-        return self.name
-
 class userAddPost(models.Model):
     name = models.CharField(max_length=200,blank=True,null=True)
     il = models.CharField(max_length=200,blank=True,null=True)
@@ -176,11 +163,11 @@ class listComment(models.Model):
     def __str__(self):
         return self.name
 
-class payment (models.Model):
-    card_cvv = models.CharField(max_length=3,blank=True,null=True)
-    card_valid_thru = models.CharField(max_length=7,blank=True,null=True)
-    cardholder_name = models.CharField(max_length=200,blank=True,null=True)
-    card_number = models.CharField(max_length=30,blank=True,null=True)
+#class payment (models.Model):
+#    card_cvv = models.CharField(max_length=3,blank=True,null=True)
+#    card_valid_thru = models.CharField(max_length=7,blank=True,null=True)
+#    cardholder_name = models.CharField(max_length=200,blank=True,null=True)
+#    card_number = models.CharField(max_length=30,blank=True,null=True)
 
-    def _str_(self):
-        return self.cardholder_name
+#    def _str_(self):
+#        return self.cardholder_name
