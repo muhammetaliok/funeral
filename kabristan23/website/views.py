@@ -186,9 +186,9 @@ def register_request(request):
 		if form.is_valid():
 			user = form.save()
 			login(request, user)
-			messages.success(request, "Registration successful." )
+			messages.success(request, "Kayıt İşlemi Başarılı." )
 			return redirect("website:login")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
+		messages.error(request, "İşlem başarısız.Giriş bilgileri geçerli değil.")
 	form = NewUserForm()
 	return render (request,"back_end/login/register.html", {"register_form":form})
 
@@ -202,12 +202,12 @@ def login_request(request):
 			user = authenticate(username=username, password=password)
 			if user is not None:
 				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
+				messages.info(request, f"Giriş yaptınız {username}.")
 				return redirect("website:home")
 			else:
-				messages.error(request,"Invalid username or password.")
+				messages.error(request,"Geçersiz kullanıcı adı veya şifre.")
 		else:
-			messages.error(request,"Invalid username or password.")
+			messages.error(request,"Geçersiz kullanıcı adı veya şifre.")
 	form = AuthenticationForm()
 	return render(request,"back_end/login/login.html", {"login_form":form})
 
@@ -215,7 +215,7 @@ def login_request(request):
 
 def logout_request(request):
 	logout(request)
-	messages.info(request, "You have successfully logged out.") 
+	messages.info(request, "Çıkış işlemi başarılı.") 
 	return redirect("website:login")
 
 
