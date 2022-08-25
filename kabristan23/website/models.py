@@ -163,11 +163,11 @@ class listComment(models.Model):
     def __str__(self):
         return self.name
 
-#class payment (models.Model):
-#    card_cvv = models.CharField(max_length=3,blank=True,null=True)
-#    card_valid_thru = models.CharField(max_length=7,blank=True,null=True)
-#    cardholder_name = models.CharField(max_length=200,blank=True,null=True)
-#    card_number = models.CharField(max_length=30,blank=True,null=True)
+class payment (models.Model):
+    card_cvv = models.CharField(max_length=3,blank=True,null=True)
+    card_valid_thru = models.CharField(max_length=7,blank=True,null=True)
+    cardholder_name = models.CharField(max_length=200,blank=True,null=True)
+    card_number = models.CharField(max_length=30,blank=True,null=True)
 
-#    def _str_(self):
-#        return self.cardholder_name
+    def _str_(self):
+        return self.cardholder_name
