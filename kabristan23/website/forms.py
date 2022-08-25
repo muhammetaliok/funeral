@@ -122,12 +122,12 @@ class ListComment(forms.ModelForm):
         model = listComment
         fields = ['name','email','comment','comment_date']
     
-#class Payment(forms.ModelForm):
-#    cardholder_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
-#    card_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
-#    card_cvv = forms.IntegerField()
-#    card_valid_thru = forms.IntegerField()
+class Payment(forms.ModelForm):
+    cardholder_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+    card_number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control rounded-0','autocomplete':'off'}))
+    card_cvv = forms.IntegerField()
+    card_valid_thru = forms.IntegerField()
 
-#    class Meta:
-#        model = payment
-#        fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
+    class Meta:
+        model = payment
+        fields = ['cardholder_name','card_number','card_cvv','card_valid_thru']
